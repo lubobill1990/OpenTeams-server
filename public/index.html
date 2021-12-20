@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const ws = new WebSocket("wss://ws.teams.com:9001/websocket");
+      ws.addEventListener("open", (e) => {
+        console.log(e);
+        ws.send(
+          JSON.stringify({
+            type: "hello",
+          })
+        );
+      });
+      ws.addEventListener("message", (e) => {
+        console.log(e);
+      });
+      ws.addEventListener("error", (e) => {
+        console.log("error", e);
+      });
+      ws.addEventListener("close", (e) => {
+        console.log("close", e);
+      });
+    </script>
+  </body>
+</html>
